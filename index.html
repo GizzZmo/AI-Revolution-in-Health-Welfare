@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Health & Welfare: Innovation vs. Ethical Responsibility | Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7F7F7;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid #00A6FB;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            flex: 1;
+        }
+        .flowchart-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #342E37;
+            padding: 0 1rem;
+        }
+        .pyramid-level {
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+            padding: 1rem 2rem;
+            margin: -1px auto 0;
+            text-align: center;
+            font-weight: 600;
+            color: #342E37;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            font-weight: 800;
+            color: #342E37;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .llm-button {
+            background-color: #00A6FB;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .llm-button:hover {
+            background-color: #008AC9;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin-left: 0.5rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-black text-[#342E37] leading-tight">The AI Revolution in Health & Welfare</h1>
+            <p class="text-xl md:text-2xl text-[#00A6FB] font-semibold mt-2">Balancing Transformative Innovation with Ethical Responsibility</p>
+        </header>
+
+        <section id="introduction" class="mb-16">
+            <div class="max-w-4xl mx-auto text-center">
+                 <p class="text-lg text-gray-700">Artificial Intelligence represents a frontier of innovation with profound implications for health and social services. Its capacity to interpret complex medical scans, enhance surgical precision, and streamline administrative tasks promises to improve patient outcomes and efficiency. However, this transformative potential is shadowed by a critical ethical dilemma: AI systems trained on historical data risk perpetuating and amplifying deep-seated societal biases, with severe consequences for marginalized populations. This report explores this dual nature, visualizing the market trends driving AI adoption against the urgent need for ethical governance.</p>
+                 <button id="stakeholderCallBtn" class="llm-button">
+                    ✨ Stakeholder Call to Action
+                </button>
+            </div>
+        </section>
+
+        <section id="market-opportunity" class="mb-16">
+            <h2 class="section-title">Market Opportunity & Growth</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+                <div class="md:col-span-3 bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="font-bold text-xl mb-4 text-[#342E37]">Projected AI & AR Adoption in Healthcare</h3>
+                    <p class="text-gray-600 mb-4">The market for AI and AR in health and welfare is poised for explosive growth as organizations adopt these technologies to address systemic challenges, including provider shortages and access disparities. Projections show a steep rise in the integration of AI for diagnostics and AR for training and surgical assistance over the next five years.</p>
+                    <div class="chart-container">
+                        <canvas id="adoptionRateChart"></canvas>
+                    </div>
+                    <button id="brainstormAppsBtn" class="llm-button">
+                        ✨ Brainstorm New AI/AR Apps
+                    </button>
+                </div>
+                <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="font-bold text-xl mb-4 text-[#342E37]">Efficiency Gains: Reclaiming Time for Care</h3>
+                     <p class="text-gray-600 mb-4">A key driver of AI adoption is the potential for significant operational efficiency. For instance, nurses can spend up to 40% of their time on documentation. AI-powered automation targets this administrative burden, freeing up invaluable time for direct, human-centered patient care.</p>
+                    <div class="chart-container">
+                        <canvas id="efficiencyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="synergy" class="mb-16">
+             <h2 class="section-title">Core Technology Synergy</h2>
+             <div class="bg-white rounded-lg shadow-lg p-8">
+                 <p class="text-lg text-gray-600 text-center mb-8">The true power emerges from how AI, AR, and Infographics combine to create a seamless, intelligent workflow. This process transforms raw data into actionable, personalized insights at the point of need, augmenting human capability rather than replacing it.</p>
+                 <div class="flex flex-col md:flex-row items-stretch justify-center space-y-4 md:space-y-0">
+                     <div class="flowchart-node">
+                         <h4 class="font-bold">1. Data & Context</h4>
+                         <p class="text-sm">AI analyzes real-world data (EHR, sensors) and understands user context.</p>
+                     </div>
+                     <div class="flowchart-arrow">→</div>
+                     <div class="flowchart-node">
+                         <h4 class="font-bold">2. Insight & Generation</h4>
+                         <p class="text-sm">AI generates predictive insights and creates personalized infographics.</p>
+                     </div>
+                     <div class="flowchart-arrow">→</div>
+                     <div class="flowchart-node">
+                         <h4 class="font-bold">3. Immersive Delivery</h4>
+                         <p class="text-sm">AR overlays the visual information onto the user's physical environment.</p>
+                     </div>
+                     <div class="flowchart-arrow">→</div>
+                     <div class="flowchart-node">
+                         <h4 class="font-bold">4. Empowered Action</h4>
+                         <p class="text-sm">The human professional makes a more informed decision, enhancing outcomes.</p>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        <section id="bias-risk" class="mb-16">
+            <h2 class="section-title">The Critical Challenge: Systemic Bias</h2>
+            <p class="text-lg text-gray-600 text-center max-w-4xl mx-auto mb-10">Deploying AI is ethically indefensible without confronting its greatest risk: systemic bias. AI models trained on historically biased data can create a "digital echo chamber," amplifying past discrimination and leading to a "poverty-to-punishment pipeline." This erodes trust and worsens disparities for marginalized communities.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="font-bold text-xl mb-4 text-[#342E37]">Sources of Bias & Real-World Impact</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-lg text-[#DC493A]">Racial & Ethnic Bias</h4>
+                            <p class="text-gray-600">Historical data reflects unequal treatment. For example, the original VBAC algorithm was biased against Black and Hispanic women, leading to higher C-section rates. People of color often receive less pain medication for identical symptoms.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-[#DC493A]">Gender Bias</h4>
+                            <p class="text-gray-600">Women's pain is more likely to be dismissed as anxiety, while men are recommended for surgical interventions more readily. AI trained on this data can perpetuate diagnostic and treatment disparities.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-[#DC493A]">Socioeconomic & Algorithmic Bias</h4>
+                            <p class="text-gray-600">Poverty is often misidentified as neglect in welfare data. In the Netherlands, a tax algorithm using nationality as a risk factor led to financial ruin and family breakdowns for thousands of innocent people, turning systemic disadvantage into automated punishment.</p>
+                        </div>
+                    </div>
+                     <button id="exploreBiasCounterBtn" class="llm-button">
+                        ✨ Explore Bias Countermeasures
+                    </button>
+                    <button id="caseStudyBiasBtn" class="llm-button ml-4">
+                        ✨ Case Study of Bias
+                    </button>
+                    <button id="ethicalDilemmaBtn" class="llm-button ml-4">
+                        ✨ Pose an Ethical Dilemma
+                    </button>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="font-bold text-xl mb-4 text-[#342E37]">The Vicious Cycle of Disadvantage</h3>
+                    <p class="text-gray-600 mb-6">Biased AI creates a self-reinforcing cycle where flawed recommendations worsen health disparities, which in turn erodes trust in the very systems designed to help, further marginalizing vulnerable populations.</p>
+                    <div class="space-y-0">
+                        <div class="pyramid-level" style="background-color: #FECD1A; width: 100%;">Systemic Inequity & Harmful Outcomes</div>
+                        <div class="pyramid-level" style="background-color: #FECD1A; opacity: 0.8; width: 85%;">Unequal Access to Resources</div>
+                        <div class="pyramid-level" style="background-color: #FECD1A; opacity: 0.6; width: 70%;">Reinforcement of Stereotypes</div>
+                        <div class="pyramid-level" style="background-color: #FECD1A; opacity: 0.4; width: 55%;">Erosion of Trust in Health Systems</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mitigation" class="mb-16">
+            <h2 class="section-title">The Path Forward: Mitigation & Governance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="font-bold text-xl mb-4 text-[#342E37]">A Multi-Faceted Mitigation Strategy</h3>
+                    <p class="text-gray-600 mb-4">Countering bias requires a comprehensive strategy integrated across the entire AI lifecycle. No single technique is sufficient. A holistic approach combines proactive design with reactive monitoring, all underpinned by strong governance and a commitment to human-centric values.</p>
+                    <div class="chart-container">
+                        <canvas id="mitigationChart"></canvas>
+                    </div>
+                    <button id="explainMitigationBtn" class="llm-button">
+                        ✨ Explain Mitigation Tactic
+                    </button>
+                </div>
+                 <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="font-bold text-xl mb-4 text-[#342E37]">Key Governance Frameworks</h3>
+                    <p class="text-gray-600 mb-4">Emerging global standards provide a roadmap for responsible AI. These frameworks are shifting from aspirational principles to enforceable regulations, mandating accountability and human oversight.</p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="font-bold text-[#00A6FB] mr-2">●</span><div><span class="font-semibold">EU AI Act:</span> A risk-based law that prohibits "unacceptable risk" AI and imposes strict requirements for high-risk systems in health and welfare.</div></li>
+                        <li class="flex items-start"><span class="font-bold text-[#00A6FB] mr-2">●</span><div><span class="font-semibold">NIST AI RMF:</span> A U.S. framework for managing AI risks, centered on Governance, Transparency, Accountability, and Trust.</div></li>
+                        <li class="flex items-start"><span class="font-bold text-[#00A6FB] mr-2">●</span><div><span class="font-semibold">WHO & IEEE Principles:</span> Global guidelines emphasizing human well-being, inclusiveness, equity, and practical methods for embedding ethics into system design.</div></li>
+                    </ul>
+                    <button id="applyEthicalFrameworkBtn" class="llm-button">
+                        ✨ Apply Ethical Framework
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="human-centric-future" class="mb-16">
+            <h2 class="section-title">A Human-Centric Future</h2>
+            <p class="text-lg text-gray-600 text-center max-w-4xl mx-auto mb-10">When developed responsibly, AI and AR can address critical needs across the welfare sector, augmenting human capabilities to foster independence, access, and connection for vulnerable populations.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <span class="text-5xl">👵</span>
+                    <h3 class="font-bold text-xl my-3 text-[#342E37]">Empowering Elderly Care</h3>
+                    <p class="text-gray-600">AI-powered voice assistants and sensors combat loneliness and ensure safety, while AR can deliver interactive health reminders, fostering independence and proactive care.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <span class="text-5xl">❤️‍🩹</span>
+                    <h3 class="font-bold text-xl my-3 text-[#342E37]">Advancing Mental Health</h3>
+                    <p class="text-gray-600">AR provides safe environments for exposure therapy and enables remote counseling. Infographics can destigmatize conditions and improve mental health literacy.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <span class="text-5xl">♿</span>
+                    <h3 class="font-bold text-xl my-3 text-[#342E37]">Promoting Disability Equity</h3>
+                    <p class="text-gray-600">AR serves as a powerful assistive technology, offering real-time captioning, enhanced navigation, and skill-building simulations to increase autonomy and social integration.</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <button id="inclusiveDesignBtn" class="llm-button">
+                    ✨ Inclusive Design Showcase
+                </button>
+                <button id="detailHumanCentricAppBtn" class="llm-button ml-4">
+                    ✨ Detail Human-Centric App
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="text-center p-6 bg-[#342E37] text-white">
+        <p>This infographic synthesizes findings from reports on AI ethics and the impact of AI/AR in health and welfare.</p>
+        <p class="mt-1">Responsible innovation requires balancing technological potential with a commitment to equity and human well-being.</p>
+        <button id="envisionFutureBtn" class="llm-button mt-4">
+            ✨ Envision the Future
+        </button>
+    </footer>
+
+    <div id="llmModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h4 class="text-xl font-bold mb-4 text-[#342E37]" id="modalTitle"></h4>
+            <div id="modalContent" class="text-gray-700"></div>
+            <div id="loadingIndicator" class="hidden flex items-center justify-center mt-4">
+                <div class="loading-spinner"></div>
+                <span class="ml-2 text-gray-600">Generating...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxWidth = 16) => {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const defaultPlugins = {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    font: {
+                        family: 'Inter',
+                        size: 12
+                    },
+                    padding: 20
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                },
+                bodyFont: {
+                    family: 'Inter'
+                },
+                titleFont: {
+                    family: 'Inter',
+                    weight: 'bold'
+                },
+                backgroundColor: '#342E37',
+                padding: 10,
+            }
+        };
+        
+        const palette = {
+            blue: '#00A6FB',
+            red: '#DC493A',
+            yellow: '#FECD1A',
+            dark: '#342E37',
+            light: '#F7F7F7'
+        };
+
+        new Chart(document.getElementById('adoptionRateChart'), {
+            type: 'line',
+            data: {
+                labels: ['2023', '2024', '2025 (Proj.)', '2026 (Proj.)', '2027 (Proj.)'],
+                datasets: [
+                    {
+                        label: 'AI in Diagnostics',
+                        data: [22, 35, 52, 68, 85],
+                        borderColor: palette.blue,
+                        backgroundColor: palette.blue + '33',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'AR in Training & Surgery',
+                        data: [15, 25, 45, 65, 80],
+                        borderColor: palette.red,
+                        backgroundColor: palette.red + '33',
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: { callback: value => value + '% Adoption' }
+                    }
+                },
+                plugins: defaultPlugins
+            }
+        });
+
+        new Chart(document.getElementById('efficiencyChart'), {
+            type: 'doughnut',
+            data: {
+                labels: [wrapLabel('Administrative & Documentation Tasks'), 'Direct Patient Care'],
+                datasets: [{
+                    data: [40, 60],
+                    backgroundColor: [palette.yellow, palette.blue],
+                    borderColor: palette.light,
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: defaultPlugins
+            }
+        });
+        
+        new Chart(document.getElementById('mitigationChart'), {
+            type: 'radar',
+            data: {
+                labels: [
+                    wrapLabel('Data-Centric Approaches'), 
+                    wrapLabel('Algorithmic Fairness'), 
+                    'Human Oversight', 
+                    'Explainable AI (XAI)',
+                    'Continuous Monitoring',
+                    'Governance & Accountability'
+                ],
+                datasets: [{
+                    label: 'Importance in Ethical AI Framework',
+                    data: [90, 85, 95, 80, 88, 92],
+                    backgroundColor: palette.blue + '4D',
+                    borderColor: palette.blue,
+                    pointBackgroundColor: palette.blue,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: palette.blue
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100,
+                        angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                        pointLabels: {
+                            font: { size: 12, family: 'Inter' }
+                        },
+                        ticks: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: defaultPlugins
+            }
+        });
+
+        const llmModal = document.getElementById('llmModal');
+        const closeButton = llmModal.querySelector('.close-button');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+
+        const showModal = (title, content, isLoading = false) => {
+            modalTitle.textContent = title;
+            if (isLoading) {
+                modalContent.innerHTML = '';
+                loadingIndicator.classList.remove('hidden');
+                loadingIndicator.classList.add('flex');
+            } else {
+                modalContent.innerHTML = content;
+                loadingIndicator.classList.add('hidden');
+                loadingIndicator.classList.remove('flex');
+            }
+            llmModal.style.display = 'flex';
+        };
+
+        const hideModal = () => {
+            llmModal.style.display = 'none';
+        };
+
+        closeButton.onclick = hideModal;
+        window.onclick = (event) => {
+            if (event.target == llmModal) {
+                hideModal();
+            }
+        };
+
+        const callGeminiAPI = async (prompt, title) => {
+            showModal(title, '', true);
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    showModal(title, text);
+                } else {
+                    showModal(title, 'Failed to generate content. Please try again.');
+                    console.error('Gemini API response structure unexpected:', result);
+                }
+            } catch (error) {
+                showModal(title, 'An error occurred while fetching content.');
+                console.error('Error calling Gemini API:', error);
+            }
+        };
+
+        document.getElementById('brainstormAppsBtn').addEventListener('click', () => {
+            const prompt = "Brainstorm three novel and impactful AI/AR applications in either the health or welfare sector. For each, give a brief (1-2 sentences) description. Focus on areas not explicitly mentioned in the infographic, e.g., rehabilitation, community support, administrative aid.";
+            callGeminiAPI(prompt, 'New AI/AR Application Ideas');
+        });
+
+        document.getElementById('exploreBiasCounterBtn').addEventListener('click', () => {
+            const prompt = "Briefly describe one specific technical or procedural countermeasure to mitigate racial or socioeconomic bias in AI models used in health or welfare. Focus on a practical method like data re-weighting, fairness metrics, or participatory design. Keep it under 80 words.";
+            callGeminiAPI(prompt, 'Bias Countermeasure');
+        });
+
+        document.getElementById('applyEthicalFrameworkBtn').addEventListener('click', () => {
+            const prompt = "Imagine a scenario where an AI system is used for resource allocation in welfare. How would a principle from the EU AI Act (e.g., 'human oversight' or 'transparency') help prevent a biased outcome against a marginalized group? Describe a brief, specific intervention. Keep it under 100 words.";
+            callGeminiAPI(prompt, 'Ethical Framework in Action');
+        });
+
+        document.getElementById('inclusiveDesignBtn').addEventListener('click', () => {
+            const prompt = "Describe a hypothetical AI/AR application that is specifically designed with inclusivity for one marginalized group (e.g., individuals with visual impairment, seniors with mobility issues). Focus on a key feature demonstrating inclusive design. Keep it concise, under 80 words.";
+            callGeminiAPI(prompt, 'Inclusive Design Showcase');
+        });
+
+        document.getElementById('envisionFutureBtn').addEventListener('click', () => {
+            const prompt = "Generate a brief (under 100 words), balanced future scenario for AI and AR in the health and welfare sectors. Include both a positive innovation and a potential ethical challenge that requires ongoing attention.";
+            callGeminiAPI(prompt, 'Envisioning the Future');
+        });
+
+        document.getElementById('explainMitigationBtn').addEventListener('click', () => {
+            const mitigationTactics = [
+                "Data-Centric Approaches (e.g., re-weighting or oversampling underrepresented groups)",
+                "Algorithmic Fairness (e.g., using fairness metrics like disparate impact or equal opportunity)",
+                "Human Oversight (e.g., human-in-the-loop systems or expert review panels)",
+                "Explainable AI (XAI) (e.g., LIME or SHAP values to understand model decisions)",
+                "Continuous Monitoring (e.g., regularly auditing model performance on diverse subgroups)",
+                "Participatory Design (e.g., involving affected communities in AI system development)"
+            ];
+            const randomTactic = mitigationTactics[Math.floor(Math.random() * mitigationTactics.length)];
+            const prompt = `Briefly explain the AI bias mitigation tactic of "${randomTactic}". Focus on what it aims to achieve and how it works in a general sense. Keep it under 80 words.`;
+            callGeminiAPI(prompt, `Explaining: ${randomTactic}`);
+        });
+
+        document.getElementById('detailHumanCentricAppBtn').addEventListener('click', () => {
+            const appCategories = [
+                "an AI-powered AR application for elderly care, focusing on preventing falls and promoting social connection",
+                "an AI-driven AR application for mental health support, specifically for anxiety management through guided meditation and immersive calming environments",
+                "an AI/AR application designed to assist individuals with visual impairments in navigating public spaces safely and independently"
+            ];
+            const randomCategory = appCategories[Math.floor(Math.random() * appCategories.length)];
+            const prompt = `Describe a specific feature and benefit of ${randomCategory}. Keep it under 100 words and focus on how it enhances human well-being and inclusivity.`;
+            callGeminiAPI(prompt, `Detailing: ${randomCategory}`);
+        });
+
+        document.getElementById('caseStudyBiasBtn').addEventListener('click', () => {
+            const biasTypes = [
+                "racial bias in medical diagnostic AI (e.g., for skin conditions)",
+                "gender bias in healthcare resource allocation algorithms (e.g., for heart attack diagnosis)",
+                "socioeconomic bias in welfare eligibility prediction (e.g., for housing assistance)"
+            ];
+            const randomBiasType = biasTypes[Math.floor(Math.random() * biasTypes.length)];
+            const prompt = `Provide a brief, hypothetical case study demonstrating ${randomBiasType}. Describe the biased outcome and its real-world impact on a marginalized population. Keep it under 100 words.`;
+            callGeminiAPI(prompt, `Case Study: ${randomBiasType}`);
+        });
+
+        document.getElementById('stakeholderCallBtn').addEventListener('click', () => {
+            const prompt = "Craft a brief (under 100 words) call to action for key stakeholders (e.g., developers, policymakers, healthcare professionals, community leaders) on their collective responsibility to ensure ethical and equitable AI deployment in health and welfare. Emphasize collaboration and human-centric values.";
+            callGeminiAPI(prompt, 'Call to Action: Ethical AI');
+        });
+
+        document.getElementById('ethicalDilemmaBtn').addEventListener('click', () => {
+            const dilemmas = [
+                "An AI diagnostic tool identifies a rare condition in a patient but the treatment is extremely expensive and not covered by their insurance. The AI suggests a cheaper, less effective alternative. What ethical obligations does the healthcare provider have?",
+                "An AI-powered welfare system uses predictive analytics to identify families 'at risk' of needing intervention. This leads to increased surveillance and intervention in low-income communities, even if the majority of families are not in crisis. Is this an ethical use of AI?",
+                "An AR surgical overlay provides real-time guidance, significantly improving outcomes. However, it's only available in well-funded urban hospitals. Is it ethical to deploy such a life-saving technology if it exacerbates health inequities?",
+                "A mental health chatbot, powered by AI, offers 24/7 support. It can't feel empathy but provides scientifically sound advice. A patient forms a strong emotional bond with the bot. Is this ethical, considering the lack of human connection?",
+                "An AI system for resource allocation in a public health crisis prioritizes efficiency, leading to faster distribution of vaccines. However, its algorithm inadvertently disadvantages hard-to-reach rural communities. Is this acceptable in the name of speed and scale?"
+            ];
+            const randomDilemma = dilemmas[Math.floor(Math.random() * dilemmas.length)];
+            const prompt = `Present a brief ethical dilemma: "${randomDilemma}" and ask for consideration of the ethical trade-offs involved. Keep it concise.`;
+            callGeminiAPI(prompt, 'Ethical Dilemma');
+        });
+    </script>
+</body>
+</html>
